@@ -1,0 +1,44 @@
+<div class="product-list">
+    <h2>Products</h2>
+
+    <!-- Add Product Button -->
+    <button class="add-product-btn" (click)="openAddProductModal()">+ Add Product</button>
+
+    <!-- Display Products -->
+    <div *ngIf="products.length === 0" class="no-products">No products available for this category.</div>
+    <div *ngFor="let product of products" class="product-item">
+        <img [src]="product.images[0]" alt="{{ product.title }}" class="product-image" />
+        <div class="product-details">
+            <h4>{{ product.title }}</h4>
+            <p>{{ product.description }}</p>
+            <span>Price: ${{ product.price }}</span>
+            <!-- Add to Cart Button -->
+            <button class="add-to-cart-btn" (click)="addToCart(product)">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Product Modal -->
+<div *ngIf="isAddProductModalOpen" class="modal">
+    <div class="modal-content">
+        <h3>Add New Product</h3>
+        <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+            <label for="title">Product Title:</label>
+            <input formControlName="title" type="text" id="title" required />
+
+            <label for="price">Price:</label>
+            <input formControlName="price" type="number" id="price" required />
+
+            <label for="description">Description:</label>
+            <textarea formControlName="description" id="description" required></textarea>
+
+            <label for="image">Image URL:</label>
+            <input formControlName="image" type="text" id="image" required />
+
+            <div class="modal-actions">
+                <button type="submit" [disabled]="productForm.invalid">Save</button>
+                <button type="button" (click)="closeAddProductModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

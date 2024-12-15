@@ -1,0 +1,38 @@
+<div class="sidebar">
+    <h3>Categories</h3>
+
+    <!-- Display Categories -->
+    <ul>
+        <li *ngFor="let category of categories" (click)="navigateToCategory(category.id)">
+            <img [src]="category.image" alt="{{ category.name }}" />
+            <span>{{ category.name }}</span>
+            <button (click)="editCategory(category)">Edit</button>
+            <button (click)="deleteCategory(category.id)">Delete</button>
+        </li>
+    </ul>
+
+    <!-- Error Handling -->
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <!-- Add Category Button -->
+    <button class="add-category-btn" (click)="openAddCategoryModal()">+ Add Category</button>
+
+    <!-- Add/Edit Category Modal -->
+    <div *ngIf="isCategoryModalOpen" class="modal">
+        <div class="modal-content">
+            <h3>{{ isEditing ? 'Edit Category' : 'Add Category' }}</h3>
+            <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+                <label for="name">Category Name:</label>
+                <input formControlName="name" type="text" id="name" />
+
+                <label for="image">Image URL:</label>
+                <input formControlName="image" type="text" id="image" />
+
+                <div class="modal-actions">
+                    <button type="submit" [disabled]="categoryForm.invalid">Save</button>
+                    <button type="button" (click)="closeCategoryModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

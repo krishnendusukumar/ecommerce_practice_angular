@@ -1,0 +1,16 @@
+<div class="checkout-page">
+    <h2>Checkout</h2>
+
+    <!-- Show Checkout Summary -->
+    <div *ngIf="!isCheckoutComplete">
+        <p>Total Amount to Pay: ${{ totalAmount }}</p>
+        <button (click)="completeCheckout()" class="complete-checkout-btn">Complete Checkout</button>
+    </div>
+
+    <!-- Thank You Message with Animation -->
+    <div *ngIf="isCheckoutComplete" class="thank-you">
+        <h3>Thank You for Your Purchase!</h3>
+        <p>Your order has been placed successfully.</p>
+        <p>Redirecting you to the homepage...</p>
+    </div>
+</div>

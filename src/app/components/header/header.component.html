@@ -1,0 +1,26 @@
+<header class="header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="assets/logo.png" alt="Online Shop Logo" />
+            <h1>Online Shop</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+            <a routerLink="/categories" routerLinkActive="active">Categories</a>
+            <a routerLink="/products" routerLinkActive="active">Products</a>
+            <a routerLink="/profile" routerLinkActive="active">Update Profile</a>
+        </nav>
+
+        <!-- Cart Section -->
+        <div class="cart">
+            <button class="cart-button" routerLink="/cart">
+                <span>🛒 Cart</span>
+                <span class="cart-count">{{ cartItemsCount }}</span>
+            </button>
+            <a routerLink="/checkout" class="checkout-link">Checkout</a>
+        </div>
+    </div>
+</header>

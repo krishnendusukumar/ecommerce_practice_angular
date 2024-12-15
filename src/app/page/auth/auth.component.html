@@ -1,0 +1,76 @@
+<div class="container mt-5">
+    <ul class="nav nav-tabs" id="authTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button"
+                role="tab" aria-controls="login" aria-selected="true">
+                Login
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button"
+                role="tab" aria-controls="register" aria-selected="false">
+                Register
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="authTabsContent">
+        <!-- Login Tab -->
+        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                <div class="mb-3">
+                    <label for="emailLogin" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailLogin" formControlName="email"
+                        placeholder="Enter your email" />
+                    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-danger">
+                        A valid email is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordLogin" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordLogin" formControlName="password"
+                        placeholder="Enter your password" />
+                    <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+                        class="text-danger">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100" [disabled]="loginForm.invalid">Login</button>
+            </form>
+        </div>
+
+        <!-- Register Tab -->
+        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                <div class="mb-3">
+                    <label for="nameRegister" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="nameRegister" formControlName="name"
+                        placeholder="Enter your name" />
+                    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+                        class="text-danger">
+                        Name is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="emailRegister" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailRegister" formControlName="email"
+                        placeholder="Enter your email" />
+                    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+                        class="text-danger">
+                        A valid email is required
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordRegister" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordRegister" formControlName="password"
+                        placeholder="Enter your password" />
+                    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+                        class="text-danger">
+                        Password must be at least 6 characters
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
